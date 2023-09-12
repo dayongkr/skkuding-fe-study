@@ -144,9 +144,15 @@ const data = [
 const cardWrapper = document.getElementById("card-wrapper");
 
 data.forEach((pokemon, index) => {
-  const card = document.createElement("a");
+  const card = document.createElement("div");
   card.classList.add("card");
-  card.href = `./pokemon?id=${index + 1}`;
+  card.addEventListener("click", () => {
+    window.location.href = "./pokemon";
+    window.localStorage.setItem(
+      "pokemon",
+      JSON.stringify({ id: index + 1, ...pokemon })
+    );
+  });
   const img = document.createElement("img");
   img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
     index + 1
